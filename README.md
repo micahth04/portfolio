@@ -1,24 +1,27 @@
-# Micah's Portfolio
+# Micah Truelove-Herrick — Portfolio
 
-A static journalism portfolio built with Astro.
+Personal journalism portfolio. Static site built with [Astro](https://astro.build),
+hosted on Cloudflare Pages.
 
-## Status
+## Development
 
-- ✅ Phase 1 — static site rendering from local markdown, matching
-  `reference/micah-portfolio-mockup.html`
-- ⏳ Phase 2 — deploy to Cloudflare Pages
-- ⏳ Phase 3 — Sveltia CMS + Cloudflare Worker OAuth, so Micah can publish
-  without touching code
+```sh
+npm install
+npm run dev       # localhost:4321
+npm run build     # outputs to dist/
+npm run preview   # serve the production build
+```
 
-## Adding an article (until the CMS is wired up)
+## Articles
 
-Add a markdown file to `src/content/articles/`. No body content — the file
-is just frontmatter:
+Each article is a markdown file in `src/content/articles/` containing
+frontmatter only. Articles link out to the original publication; full text
+is never hosted.
 
 ```md
 ---
-headline: Some headline
-url: https://example.com/the-actual-article
+headline: Article headline
+url: https://example.com/original-article
 outlet: The Arrow
 date: 2026-09-01
 excerpt: >-
@@ -27,44 +30,36 @@ featured: false
 ---
 ```
 
-- `featured: true` articles appear in "Selected work" on the homepage,
-  newest three only (the cap is enforced in `src/pages/index.astro`, not by
-  trusting this flag).
-- Everything else shows up in the archive, grouped by year.
-- `archiveUrl` is optional — a Wayback Machine link for the piece, added
-  automatically once that pipeline exists (not yet built).
-- `draft: true` hides an article from the site without deleting it.
+| Field        | Required | Notes                                              |
+| :----------- | :------- | :------------------------------------------------- |
+| `headline`   | yes      |                                                    |
+| `url`        | yes      | Link to the original article                       |
+| `outlet`     | yes      | Publication name                                   |
+| `date`       | yes      | `YYYY-MM-DD`                                       |
+| `excerpt`    | yes      | Two to three sentences                             |
+| `featured`   | no       | Shown under "Selected work"; newest three only     |
+| `draft`      | no       | Hidden from the site without deleting the file     |
+| `archiveUrl` | no       | Wayback Machine link                               |
 
-Schema lives in [`src/content.config.ts`](./src/content.config.ts).
+Non-featured articles appear in the archive, grouped by year. The schema is
+defined in `src/content.config.ts`.
 
 ## Site copy
 
-Name, tagline, bio, and contact links live in
-[`src/site.config.ts`](./src/site.config.ts) — some of it is still
-placeholder pending real answers from Micah.
+Name, tagline, bio, and contact links are in `src/site.config.ts`.
 
-## Commands
-
-| Command           | Action                                       |
-| :----------------- | :-------------------------------------------- |
-| `npm install`       | Install dependencies                          |
-| `npm run dev`       | Start local dev server at `localhost:4321`    |
-| `npm run build`     | Build the static site to `./dist/`            |
-| `npm run preview`   | Preview the production build locally          |
-
-## Project structure
+## Structure
 
 ```text
-/
-├── reference/                    # design mockup Micah was promised
-├── src/
-│   ├── components/                # Masthead, Hero, Featured, Archive, About, Footer
-│   ├── content/articles/          # one markdown file per article
-│   ├── content.config.ts          # articles collection schema
-│   ├── layouts/Layout.astro       # <head>, fonts, Person schema, analytics
-│   ├── pages/index.astro          # homepage — assembles everything above
-│   ├── site.config.ts             # name, bio, contact, resume link
-│   └── styles/global.css          # ported from the mockup, do not add to it
-└── public/
-    └── resume.pdf                 # stable download link, currently a placeholder
+public/
+  resume.pdf            served at /resume.pdf
+reference/              design mockup
+src/
+  components/           page sections
+  content/articles/     one file per article
+  content.config.ts     article schema
+  layouts/Layout.astro  document head, fonts, structured data
+  pages/index.astro     homepage
+  site.config.ts        site copy
+  styles/global.css     global styles
 ```
