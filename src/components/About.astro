@@ -1,0 +1,9 @@
+---
+import { site } from '../site.config';
+---
+
+<section class="about" id="about">
+  <p class="section-head">About</p>
+  {site.about.map((paragraph) => <p set:html={paragraph} />)}
+  <p><a href={site.resumeUrl}>Résumé available on request.</a></p>
+</section>

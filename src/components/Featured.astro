@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+}
+
+const { articles } = Astro.props;
+---
+
+<section class="featured" id="work">
+  <p class="section-head">Selected work</p>
+
+  {articles.map((article) => (
+    <article>
+      <h2><a href={article.data.url} target="_blank" rel="noopener">{article.data.headline}</a></h2>
+      <p class="credit">
+        <cite>{article.data.outlet}</cite>, {article.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}
+      </p>
+      <p class="excerpt">{article.data.excerpt}</p>
+    </article>
+  ))}
+</section>

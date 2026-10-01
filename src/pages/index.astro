@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Masthead from '../components/Masthead.astro';
+import Hero from '../components/Hero.astro';
+import Featured from '../components/Featured.astro';
+import Archive from '../components/Archive.astro';
+import About from '../components/About.astro';
+import Footer from '../components/Footer.astro';
+
+const MAX_FEATURED = 3;
+
+const all = await getCollection('articles', ({ data }) => !data.draft);
+const sorted = [...all].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Cap enforced here, not by trusting the `featured` flag in content data.
+const featured = sorted.filter((a) => a.data.featured).slice(0, MAX_FEATURED);
+const featuredIds = new Set(featured.map((a) => a.id));
+const archive = sorted.filter((a) => !featuredIds.has(a.id));
+---
+
+<Layout>
+  <Masthead />
+  <Hero />
+  <Featured articles={featured} />
+  <Archive articles={archive} />
+  <About />
+  <Footer />
+</Layout>

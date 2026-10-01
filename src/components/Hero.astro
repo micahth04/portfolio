@@ -1,0 +1,8 @@
+---
+import { site } from '../site.config';
+---
+
+<div class="hero">
+  <h1>{site.tagline}</h1>
+  <p class="outlets" set:html={site.outletsLine} />
+</div>

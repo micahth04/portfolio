@@ -1,0 +1,12 @@
+---
+import { site } from '../site.config';
+---
+
+<footer>
+  <span>{site.name}, {site.location}</span>
+  <span class="contact">
+    <a href={site.contact.email}>Email</a>
+    <a href={site.contact.signal} target="_blank" rel="noopener">Signal</a>
+    <a href={site.contact.bluesky} target="_blank" rel="noopener">Bluesky</a>
+  </span>
+</footer>

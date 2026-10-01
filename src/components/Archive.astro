@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+}
+
+const { articles } = Astro.props;
+
+// `articles` is already sorted newest-first; grouping by year preserves that order.
+const byYear = new Map<number, CollectionEntry<'articles'>[]>();
+for (const article of articles) {
+  const year = article.data.date.getUTCFullYear();
+  const group = byYear.get(year) ?? [];
+  group.push(article);
+  byYear.set(year, group);
+}
+---
+
+<section id="archive">
+  <p class="section-head">Archive</p>
+
+  {[...byYear.entries()].map(([year, yearArticles]) => (
+    <>
+      <p class="year">{year}</p>
+      {yearArticles.map((article) => (
+        <a class="clip" href={article.data.url} target="_blank" rel="noopener">
+          <span class="clip-title">{article.data.headline}</span>
+          <span class="clip-meta">{article.data.outlet}, {article.data.date.toLocaleDateString('en-US', { month: 'long', timeZone: 'UTC' })}</span>
+        </a>
+      ))}
+    </>
+  ))}
+</section>

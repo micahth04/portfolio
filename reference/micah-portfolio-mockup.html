@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Micah Reyes — Journalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FCFCFA;
+    --ink: #1B1B19;
+    --muted: #78776F;
+    --rule: #E3E2DC;
+    --measure: 34rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 2.5rem 0 0;
+    flex-wrap: wrap;
+  }
+
+  .masthead .name {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .masthead nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .masthead nav a:hover { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+
+  .hero { padding: 7rem 0 6rem; }
+
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+    font-weight: 300;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+  }
+
+  .hero .outlets {
+    margin: 2.5rem 0 0;
+    max-width: var(--measure);
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .hero .outlets em {
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  /* ---------- sections ---------- */
+
+  section { padding: 3.5rem 0; }
+
+  .section-head {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin: 0 0 2.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ---------- featured ---------- */
+
+  .featured article { margin-bottom: 3.25rem; }
+  .featured article:last-child { margin-bottom: 0; }
+
+  .featured h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    max-width: 26ch;
+  }
+
+  .featured h2 a { display: inline; }
+
+  .featured h2 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  .credit {
+    margin: 0.55rem 0 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .credit cite { font-style: italic; }
+
+  .featured p.excerpt {
+    margin: 0.9rem 0 0;
+    max-width: var(--measure);
+    color: #38372F;
+  }
+
+  /* ---------- index ---------- */
+
+  .year {
+    margin: 2.75rem 0 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .year:first-of-type { margin-top: 0; }
+
+  .clip {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .clip:hover .clip-title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+
+  .clip-title {
+    font-size: 1.08rem;
+    line-height: 1.4;
+    max-width: 34ch;
+  }
+
+  .clip-meta {
+    font-size: 0.9rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* ---------- about ---------- */
+
+  .about p {
+    max-width: var(--measure);
+    margin: 0 0 1.1rem;
+  }
+
+  .about p:last-child { margin-bottom: 0; }
+
+  .about a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--rule);
+  }
+
+  .about a:hover { text-decoration-color: var(--ink); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    padding: 3.5rem 0 4.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.95rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  footer a:hover { color: var(--ink); }
+
+  footer .contact { display: flex; gap: 1.5rem; }
+
+  @media (max-width: 34rem) {
+    body { font-size: 18px; }
+    .hero { padding: 4.5rem 0 3.5rem; }
+    .clip { display: block; }
+    .clip-meta { display: block; margin-top: 0.3rem; }
+    .clip-title { max-width: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="name">Micah Reyes</span>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#archive">Archive</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Reporting on housing, labor, and local government in St.&nbsp;Louis.</h1>
+    <p class="outlets">
+      Nine years of bylines in the <em>St. Louis Post-Dispatch</em>,
+      <em>Missouri Independent</em>, <em>Riverfront Times</em>,
+      <em>St. Louis Magazine</em>, and <em>The Atlantic</em>.
+      Currently a staff writer covering city hall.
+    </p>
+  </div>
+
+  <section class="featured" id="work">
+    <p class="section-head">Selected work</p>
+
+    <article>
+      <h2><a href="#">The landlords who own half of Wellston</a></h2>
+      <p class="credit"><cite>Missouri Independent</cite>, March 2026</p>
+      <p class="excerpt">
+        Four limited liability companies, all registered to the same
+        suburban address, control 812 rental properties across a city of
+        2,100 people. It took eleven months of deed records to find the
+        name behind them.
+      </p>
+    </article>
+
+    <article>
+      <h2><a href="#">What happened to the money for the North Side</a></h2>
+      <p class="credit"><cite>St. Louis Post-Dispatch</cite>, November 2025</p>
+      <p class="excerpt">
+        The city set aside $37 million in recovery funds for neighborhoods
+        north of Delmar. A line-by-line audit of where it actually went,
+        and the three aldermen who stopped asking.
+      </p>
+    </article>
+
+    <article>
+      <h2><a href="#">Night shift at the last foundry</a></h2>
+      <p class="credit"><cite>The Atlantic</cite>, June 2025</p>
+      <p class="excerpt">
+        Six months inside a plant that everyone assumed had already closed,
+        and the 140 people who kept showing up to work there.
+      </p>
+    </article>
+  </section>
+
+  <section id="archive">
+    <p class="section-head">Archive</p>
+
+    <p class="year">2026</p>
+    <a class="clip" href="#">
+      <span class="clip-title">A quiet rewrite of the city's vacancy rules</span>
+      <span class="clip-meta">Post-Dispatch, February</span>
+    </a>
+    <a class="clip" href="#">
+      <span class="clip-title">The bus line that took eight years to cancel</span>
+      <span class="clip-meta">Riverfront Times, January</span>
+    </a>
+
+    <p class="year">2025</p>
+    <a class="clip" href="#">
+      <span class="clip-title">Inside the county's failed jail contract</span>
+      <span class="clip-meta">Missouri Independent, October</span>
+    </a>
+    <a class="clip" href="#">
+      <span class="clip-title">Who pays for the stadium now</span>
+      <span class="clip-meta">St. Louis Magazine, August</span>
+    </a>
+    <a class="clip" href="#">
+      <span class="clip-title">Three summers on Cherokee Street</span>
+      <span class="clip-meta">Riverfront Times, May</span>
+    </a>
+
+    <p class="year">2024</p>
+    <a class="clip" href="#">
+      <span class="clip-title">The tax abatement nobody voted for</span>
+      <span class="clip-meta">Post-Dispatch, December</span>
+    </a>
+    <a class="clip" href="#">
+      <span class="clip-title">A year without a grocery store</span>
+      <span class="clip-meta">St. Louis Magazine, July</span>
+    </a>
+  </section>
+
+  <section class="about" id="about">
+    <p class="section-head">About</p>
+    <p>
+      Micah Reyes is a reporter in St. Louis. He writes about how money
+      moves through city government and who it reaches. His work has led
+      to two state audits and a change in municipal housing code.
+    </p>
+    <p>
+      Before joining the Post-Dispatch he spent four years at the
+      Riverfront Times, where he covered courts. He grew up in Overland
+      and studied at Mizzou.
+    </p>
+    <p>
+      He is open to freelance assignments and can be reached by email or
+      on Signal. Tips are welcome and treated as confidential.
+      <a href="#">Résumé available on request.</a>
+    </p>
+  </section>
+
+  <footer>
+    <span>Micah Reyes, St. Louis</span>
+    <span class="contact">
+      <a href="#">Email</a>
+      <a href="#">Signal</a>
+      <a href="#">Bluesky</a>
+    </span>
+  </footer>
+
+</div>
+
+</body>
+</html>
